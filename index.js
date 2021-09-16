@@ -1,36 +1,16 @@
 // Página principal, onde os dados serão requeridos da página html
 const express = require('express')
 const app = express()
+const handlebars = require('express-handlebars')
 
+// Instalando o handlebars
+// npm install --save express-handlebars
 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/html/index.html")
-})
-
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/html/sobre.html')
-})
-
-app.get('/sobre', (req, res) => {
-    res.send('Minha página sobre')
-})
-
-app.get('/blog', (req, res) => {
-    res.send('Meu blog!!')
-})
-
-
-app.get('/ola/:nome', (req, res) => {
-    const { nome } = req.params
-    res.send(`Ola, ${nome}`)
-})
-
-
-
-
-
-
-
+//Configurando o handlebars para template engine
+    // COnfig
+        // Template Engine handlebars
+    app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+    app.set('view engine', 'handlebars')
 
 
 app.listen(3333, () => {
